@@ -2,32 +2,34 @@
 {% block content %}
     <div class="row">
         <div class="col-md-4">
-            <div class="content-section">
-                <h3 class="border-bottom">Search your test results</h3>
-                <p class="text-muted">You can put any information you'd like here.</p>
+            <div class="sticky-top z-0" style="top:20px">
                 <div class="content-section">
-                    <form method="POST" action="">
-                        {{ form.hidden_tag() }}
-                        <fieldset class="form-group">
-                            <div class="form-group">
-                                {{ form.session_id.label(class="form-control-label") }}
+                    <h3 class="border-bottom">Search your test results</h3>
+                    <p class="text-muted">You can put any information you'd like here.</p>
+                    <div class="content-section">
+                        <form method="POST" action="">
+                            {{ form.hidden_tag() }}
+                            <fieldset class="form-group">
+                                <div class="form-group">
+                                    {{ form.session_id.label(class="form-control-label") }}
 
-                                {% if form.session_id.errors %}
-                                    {{ form.session_id(class="form-control form-control-lg is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for error in form.session_id.errors %}
-                                            <span>{{ error }}</span>
-                                        {% endfor %}
-                                    </div>
-                                {% else %}
-                                    {{ form.session_id(class="form-control form-control-lg") }}
-                                {% endif %}
+                                    {% if form.session_id.errors %}
+                                        {{ form.session_id(class="form-control form-control-lg is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.session_id.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.session_id(class="form-control form-control-lg") }}
+                                    {% endif %}
+                                </div>
+                            </fieldset>
+                            <div class="form-group mt-4">
+                                {{ form.submit(class="btn btn-primary btn-lg w-100") }}
                             </div>
-                        </fieldset>
-                        <div class="form-group mt-4">
-                            {{ form.submit(class="btn btn-primary btn-lg w-100") }}
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,7 +37,9 @@
             {% if results %}
                 {% for result in results %}
                     <div class="content-section rounded">
-                        <h2 class="">{{ result.title }}</h2>
+                        <div class="row">
+                            <h2 class="col-md-8">{{ result.title }}</h2><p class="col-md-4 text-body-tertiary fst-italic text-end fs-6">{{ result.datetime|from_timestamp }}</p>
+                        </div>
                         <div class="">
                             <h5 class="">
                                 <b>Status: <span class="text-bg-{% if result.status %}success{% else %}danger{% endif %} px-1 rounded">{{ result.status }}</span></b>
@@ -43,7 +47,7 @@
                             <h6 class="css-text-teal css-code">
                                 <a href="{{ result.request }}">{{ result.request }}</a>
                             </h6>
-                            <button class="btn btn-outline-warning w-100" data-bs-toggle="collapse" data-bs-target="#errors_{{ result.session_id }}" aria-expanded="false" aria-controls="errors_{{ result.session_id }}">
+                            <button class="btn btn-{% if result.errors %}warning{% else %}light{% endif %} w-100" data-bs-toggle="collapse" data-bs-target="#errors_{{ result.session_id }}" aria-expanded="false" aria-controls="errors_{{ result.session_id }}">
                                 <strong>Errors [ {{ result.errors|length }} ]</strong>
                             </button>
                             {% if result.errors|length > 0 %}
@@ -58,6 +62,9 @@
                                 </div>
                             {% endif %}
                             <hr>
+                            <div class="text-end">
+                                <a class="" href="/session/{{ result.session_id }}">view details</a>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}

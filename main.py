@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for, flash
 from forms import SessionForm
 from mongodb import MongoCon
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -26,6 +27,16 @@ def session():
     else:
         results = MongoCon().get_results({})
     return render_template('session.html', title='Results', form=form, results=results)
+
+
+@app.route('/session/<session_id>', methods=['GET'])
+def session_details(session_id):
+    return render_template('details.html', title='Details', session_id=session_id)
+
+
+@app.template_filter('from_timestamp')
+def from_timestamp(timestamp):
+    return datetime.fromtimestamp(timestamp)
 
 
 if __name__ == '__main__':

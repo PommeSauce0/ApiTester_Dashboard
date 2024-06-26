@@ -9,4 +9,4 @@ class MongoCon(pymongo.MongoClient):
         super().__init__(MONGO_HOST)
 
     def get_results(self, query: dict, limit: int = 30) -> list:
-        return list(self["api_tester"]["tests"].find(query).limit(limit))
+        return list(self["api_tester"]["tests"].find(query).limit(limit).sort("datetime", -1))
