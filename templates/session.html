@@ -25,7 +25,7 @@
                             </div>
                         </fieldset>
                         <div class="form-group mt-4">
-                            {{ form.submit(class="btn btn-primary btn-lg") }}
+                            {{ form.submit(class="btn btn-primary btn-lg w-100") }}
                         </div>
                     </form>
                 </div>
@@ -34,7 +34,7 @@
         <div class="col-md-8">
             {% if results %}
                 {% for result in results %}
-                    <div class="container bg-light-subtle">
+                    <div class="content-section rounded">
                         <h2 class="">{{ result.title }}</h2>
                         <div class="">
                             <h5 class="">
@@ -43,16 +43,20 @@
                             <h6 class="css-text-teal css-code">
                                 <a href="{{ result.request }}">{{ result.request }}</a>
                             </h6>
-                            <button type="button" class="css-large css-button css-theme collapsible css-round" onclick="collapse_errors(this)">
-                                Errors [ {{ result.errors|length }} ]
+                            <button class="btn btn-outline-warning w-100" data-bs-toggle="collapse" data-bs-target="#errors_{{ result.session_id }}" aria-expanded="false" aria-controls="errors_{{ result.session_id }}">
+                                <strong>Errors [ {{ result.errors|length }} ]</strong>
                             </button>
-                            <div class="content css-light-grey">
-                                <ul class="css-ul">
-                                    {% for error in result.errors %}
-                                        <li>{{ error }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                            {% if result.errors|length > 0 %}
+                                <div id="errors_{{ result.session_id }}" class="collapse">
+                                    <div class="card card-body">
+                                        <ul>
+                                            {% for error in result.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
                             <hr>
                         </div>
                     </div>
