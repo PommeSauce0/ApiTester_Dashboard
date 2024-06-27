@@ -21,12 +21,17 @@ def about():
 @app.route('/session', methods=['GET', 'POST'])
 def session():
     form = SessionForm()
+    session_ids = [id['session_id'] for id in MongoCon().get_results({}, select={'session_id': 1, '_id': 0})]
+
     if form.validate_on_submit():
         results = MongoCon().get_results({'session_id': form.session_id.data})
         flash(f'Loaded {len(results)} documents.', 'success')
     else:
         results = MongoCon().get_results({})
-    return render_template('session.html', title='Results', form=form, results=results)
+
+    results_percents = int(len([result for result in results if result['status']]) / len(results) * 100)
+    return render_template('session.html', title='Results', form=form, results=results,
+                           results_percents=results_percents, session_ids=session_ids)
 
 
 @app.route('/session/<session_id>', methods=['GET'])
