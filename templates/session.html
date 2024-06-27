@@ -65,11 +65,11 @@
                             </div>
                         </form>
                     </div>
-                    <div class="content-section">
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ results_percents }}%" aria-valuemin="0" aria-valuemax="100">{{ results_percents }}%</div>
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ 100 - results_percents }}%" aria-valuemin="0" aria-valuemax="100">{{ 100 - results_percents }}%</div>
-                        </div>
+                    <h3 class="border-bottom">More informations</h3>
+                    <label class="form-control-label">Sucess rate</label>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ results_percents }}%" aria-valuemin="0" aria-valuemax="100">{{ results_percents }}%</div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{ 100 - results_percents }}%" aria-valuemin="0" aria-valuemax="100">{{ 100 - results_percents }}%</div>
                     </div>
                 </div>
             </div>
@@ -98,10 +98,10 @@
                                             {% for error in result.errors[:9] %}
                                                 <li>{{ error }}</li>
                                             {% endfor %}
-                                            {% if result.errors|length > 10 %}
-                                                <li>...</li>
-                                            {% endif %}
                                         </ul>
+                                        {% if result.errors|length > 10 %}
+                                            <p class="text-center text-muted">more error in details</p>
+                                        {% endif %}
                                     </div>
                                 </div>
                             {% endif %}
