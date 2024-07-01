@@ -15,14 +15,14 @@
                                     {{ form.session_id.label(class="form-control-label") }}
 
                                     {% if form.session_id.errors %}
-                                        {{ form.session_id(class="form-control form-control-lg is-invalid") }}
+                                        {{ form.session_id(class="form-control form-control-lg is-invalid", placeholder="000000-000000-xxxxxxxx") }}
                                         <div class="invalid-feedback">
                                             {% for error in form.session_id.errors %}
                                                 <span>{{ error }}</span>
                                             {% endfor %}
                                         </div>
                                     {% else %}
-                                        {{ form.session_id(class="form-control form-control-lg") }}
+                                        {{ form.session_id(class="form-control form-control-lg", placeholder="000000-000000-xxxxxxxx") }}
                                     {% endif %}
                                 </div>
 <!--                                status field-->
@@ -66,7 +66,7 @@
                         </form>
                     </div>
                     <h3 class="border-bottom">More informations</h3>
-                    <label class="form-control-label">Sucess rate</label>
+                    <label class="form-control-label">Status rate</label>
                     <div class="progress">
                         <div class="progress-bar bg-success" role="progressbar" style="width: {{ results_percents }}%" aria-valuemin="0" aria-valuemax="100">{{ results_percents }}%</div>
                         <div class="progress-bar bg-danger" role="progressbar" style="width: {{ 100 - results_percents }}%" aria-valuemin="0" aria-valuemax="100">{{ 100 - results_percents }}%</div>
@@ -100,14 +100,14 @@
                                             {% endfor %}
                                         </ul>
                                         {% if result.errors|length > 10 %}
-                                            <p class="text-center text-muted">more error in details</p>
+                                            <p class="text-center text-muted">more errors in details</p>
                                         {% endif %}
                                     </div>
                                 </div>
                             {% endif %}
                             <hr>
                             <div class="text-end">
-                                <a class="" href="/session/{{ result.session_id }}">view details</a>
+                                <a class="" href="/session/{{ result._id }}">view details</a>
                             </div>
                         </div>
                     </div>

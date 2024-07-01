@@ -1,6 +1,8 @@
+import json
 from flask import Flask, render_template, request, url_for, flash
 from forms import SessionForm
 from mongodb import MongoCon
+from bson.objectid import ObjectId
 from datetime import datetime
 
 
@@ -34,9 +36,10 @@ def session():
                            results_percents=results_percents, session_ids=session_ids)
 
 
-@app.route('/session/<session_id>', methods=['GET'])
-def session_details(session_id):
-    return render_template('details.html', title='Details', session_id=session_id)
+@app.route('/session/<_id>', methods=['GET'])
+def session_details(_id):
+    return render_template('details.html', title='Details',
+                           session=MongoCon().get_results({'_id': ObjectId(_id)})[0])
 
 
 @app.template_filter('from_timestamp')
