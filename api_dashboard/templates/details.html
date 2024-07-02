@@ -1,4 +1,4 @@
 {% extends "layout.html" %}
 {% block content %}
-    <p>{{ session }}</p>
+    <pre class="rounded" id="session_details">{{ json_stringify(session) }}</pre>
 {% endblock content %}
