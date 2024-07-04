@@ -1,4 +1,30 @@
 {% extends "layout.html" %}
 {% block content %}
-    <pre class="rounded" id="session_details">{{ json_stringify(session) }}</pre>
+    <div class="row">
+        <div class="col content-result rounded-4 me-2">
+            <h3 class="border-bottom">Errors</h3>
+            <p>Comming soon, pie chart</p>
+        </div>
+        <div class="col content-result rounded-4 ms-2" style="height: 300px">
+            <h3 class="border-bottom">Errors count</h3>
+            <div class="row">
+                {% for error in count_error_types(session.errors).items() %}
+                    <div class="col badge">
+                        <h2>{{ error[1] }}</h2><br>
+                        <h6>{{ error[0] }}</h6>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="rounded pre_json">
+        <a class="btn text-body-tertiary w-100" data-bs-toggle="collapse" data-bs-target="#raw_json" aria-expanded="false" aria-controls="raw_json">
+            <p>Raw JSON</p>
+        </a>
+        <div class="rounded collapse" id="raw_json">
+            <hr class="mt-0">
+            <pre>{{ json_stringify(session) }}</pre>
+        </div>
+    </div>
 {% endblock content %}

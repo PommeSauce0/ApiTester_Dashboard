@@ -34,10 +34,10 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 5px;
 }
 
-pre {
+.pre_json {
    background-color: ghostwhite;
    border: 1px solid silver;
-   padding: 10px 20px;
+   padding: 0px 20px;
    margin: 20px;
 }
 
