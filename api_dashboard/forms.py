@@ -4,9 +4,9 @@ from wtforms.validators import DataRequired, Length
 
 
 class SessionForm(FlaskForm):
-    session_id = StringField('Session ID', validators=[DataRequired(), Length(min=22, max=22, message="Invalide Session ID")])
-
-    status = SelectField('Status', choices=[(None, ''), (True, 'True'), (False, 'False')], default=(None, ''))
+    session_id = StringField('Session ID', validators=[Length(max=22, message="Invalide Session ID")])
+    service = StringField('Service')
+    status = SelectField('Status', choices=[('01', ''), ('1', 'True'), ('', 'False')], default=('01', ''))
 
     query = StringField('MongoDB query', validators=[])
 

@@ -22,7 +22,22 @@
                                             {% endfor %}
                                         </div>
                                     {% else %}
-                                        {{ form.session_id(class="form-control form-control-lg", placeholder="000000-000000-xxxxxxxx") }}
+                                        {{ form.session_id(class="form-control form-control-lg basicAutoComplete", placeholder="000000-000000-xxxxxxxx") }}
+                                    {% endif %}
+                                </div>
+<!--                                service field-->
+                                <div class="form-group">
+                                    {{ form.service.label(class="form-control-label") }}
+
+                                    {% if form.service.errors %}
+                                        {{ form.service(class="form-control form-control-lg is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.service.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.service(class="form-control form-control-lg") }}
                                     {% endif %}
                                 </div>
 <!--                                status field-->
@@ -40,8 +55,8 @@
                                         {{ form.status(class="form-control form-control-lg") }}
                                     {% endif %}
                                 </div>
-                                <a class="btn text-body-tertiary m-0 p-0" data-bs-toggle="collapse" data-bs-target="#advancedSearch" aria-expanded="false" aria-controls="advancedSearch">
-                                    <p>Advanced ⌄</p>
+                                <a class="nav-link btn text-body-tertiary text-start" data-bs-toggle="collapse" data-bs-target="#advancedSearch" aria-expanded="false" aria-controls="advancedSearch">
+                                    <p>Advanced</p>
                                 </a>
                                 <div id="advancedSearch" class="collapse">
                                     <div class="form-group">
@@ -106,8 +121,13 @@
                                 </div>
                             {% endif %}
                             <hr>
-                            <div class="text-end">
-                                <a class="" href="/session/{{ result._id }}">view details</a>
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="text-secondary">{{ result.service }}</h6>
+                                </div>
+                                <div class="col text-end">
+                                    <a class="" href="/session/{{ result._id }}">view details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -117,16 +137,4 @@
             {% endif %}
         </div>
     </div>
-    <script>
-        $( function() {
-            var availableTags = [
-                {% for session_id in session_ids %}
-                    "{{session_id}}",
-                {% endfor %}
-            ];
-            $( "#session_id" ).autocomplete({
-                source: availableTags
-            });
-        } );
-    </script>
 {% endblock content %}

@@ -35,20 +35,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pre_json {
-   background-color: ghostwhite;
-   border: 1px solid silver;
-   padding: 0px 20px;
-   margin: 20px;
+    background-color: ghostwhite;
+    border: 1px solid silver;
+    padding: 0px 20px;
+    margin: 20px;
 }
 
 .json-key {
-   color: brown;
+    color: brown;
 }
 
 .json-value {
-   color: navy;
+    color: navy;
 }
 
 .json-string {
-   color: olive;
+    color: olive;
 }
