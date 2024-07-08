@@ -55,6 +55,21 @@
                                         {{ form.status(class="form-control form-control-lg") }}
                                     {% endif %}
                                 </div>
+<!--                                env field-->
+                                <div class="form-group">
+                                    {{ form.env.label(class="form-control-label") }}
+
+                                    {% if form.env.errors %}
+                                        {{ form.env(class="form-control form-control-lg is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.env.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.env(class="form-control form-control-lg") }}
+                                    {% endif %}
+                                </div>
                                 <a class="nav-link btn text-body-tertiary text-start" data-bs-toggle="collapse" data-bs-target="#advancedSearch" aria-expanded="false" aria-controls="advancedSearch">
                                     <p>Advanced</p>
                                 </a>
@@ -100,7 +115,7 @@
                         </div>
                         <div class="">
                             <h5 class="">
-                                <b>Status: </b><span class="text-bg-{% if result.status %}success{% else %}danger{% endif %} px-1 rounded">{{ result.status }}</span>
+                                <b>Status: </b><span class="text-bg-{% if result.status %}success{% else %}danger{% endif %} px-1 font-monospace rounded">{{ result.status }}</span>
                             </h5>
                             <h6 class="css-text-teal css-code">
                                 <a href="{{ result.request }}" target="_blank">{{ result.request }}</a>
@@ -125,7 +140,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col">
-                                    <h6 class="text-secondary">{{ result.service }} on {{ result.env }}</h6>
+                                    <h6 class="text-secondary font-monospace">{{ result.service }} on <span class="fw-semibold text-capitalize">{{ result.env }}</span></h6>
                                 </div>
                                 <div class="col text-end">
                                     <a class="" href="/session/{{ result._id }}">view details</a>

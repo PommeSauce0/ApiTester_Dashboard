@@ -2,7 +2,7 @@
 {% block content %}
     <div class="row">
         <div class="col">
-            <p class="text-body-tertiary">Environment: {{ session.env }}</p>
+            <h5 class="text-body-tertiary font-monospace">Environment: {{ session.env }}</h5>
         </div>
         <div class="col">
             <p class="text-body-tertiary fst-italic text-end">{{ session.datetime|from_timestamp }}</p>
@@ -18,9 +18,11 @@
             {% if session.errors|length > 0 %}
                 <div class="row">
                     {% for error in count_error_types(session.errors).items() %}
-                        <div class="col badge">
-                            <h2>{{ error[1] }}</h2><br>
-                            <h6>{{ error[0] }}</h6>
+                        <div class="col badge font-monospace">
+                            <div class="badge border-bottom" style="display: inline-block">
+                                <h2>{{ error[1] }}</h2><br>
+                                <h6>{{ error[0] }}</h6>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>

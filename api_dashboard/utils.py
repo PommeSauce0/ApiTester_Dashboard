@@ -17,5 +17,7 @@ def build_query(form: SessionForm) -> dict:
             query['service'] = form.service.data
         if len(form.status.data) < 2:
             query['status'] = bool(form.status.data)
+        if form.env.data:
+            query['env'] = form.env.data
 
         return query
