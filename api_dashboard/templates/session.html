@@ -81,6 +81,8 @@
                         </form>
                     </div>
                     <h3 class="border-bottom">More informations</h3>
+                    <label>Total results founds</label>
+                    <h3>{{ results|length }}</h3>
                     <label class="form-control-label">Status rate</label>
                     <div class="progress">
                         <div class="progress-bar bg-success" role="progressbar" style="width: {{ results_percents }}%" aria-valuemin="0" aria-valuemax="100">{{ results_percents }}%</div>
@@ -123,7 +125,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col">
-                                    <h6 class="text-secondary">{{ result.service }}</h6>
+                                    <h6 class="text-secondary">{{ result.service }} on {{ result.env }}</h6>
                                 </div>
                                 <div class="col text-end">
                                     <a class="" href="/session/{{ result._id }}">view details</a>
