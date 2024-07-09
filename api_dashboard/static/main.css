@@ -52,3 +52,19 @@ h1, h2, h3, h4, h5, h6 {
 .json-string {
     color: olive;
 }
+
+.bi {
+    font-size: 1.5em; /* Taille des icônes */
+}
+.text-warning {
+    color: #ffc107;
+}
+.text-primary {
+    color: #007bff;
+}
+.text-info {
+    color: #17a2b8;
+}
+.text-danger {
+    color: #dc3545;
+}

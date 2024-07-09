@@ -7,7 +7,13 @@ from .utils import build_query
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    db = MongoCon()
+    session_ids = [id['session_id'] for id in MongoCon().get_results(select={'session_id': 1, '_id': 0})]
+    sessions = db.get_all_sessions()
+    services = db.get_all_services()
+    return render_template('index.html',
+                            sessions=sessions,
+                            services=services)
 
 
 @app.route('/about', methods=['GET'])
