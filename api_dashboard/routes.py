@@ -15,6 +15,11 @@ def about():
     return render_template('about.html', title='About')
 
 
+@app.route('/help', methods=['GET'])
+def help():
+    return render_template('help.html', title='Help')
+
+
 @app.route('/session', methods=['GET', 'POST'])
 def session():
     form = SessionForm()
