@@ -21,3 +21,10 @@ def build_query(form: SessionForm) -> dict:
             query['env'] = form.env.data
 
         return query
+
+
+def percent_calc(val: int, total: int):
+    try:
+        return int(val / total * 100)
+    except ZeroDivisionError:
+        return 100
