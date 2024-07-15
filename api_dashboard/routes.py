@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash
 from . import app
 from .forms import SessionForm
 from .mongodb import MongoCon
-from .utils import build_query
+from .utils import build_query, percent_calc
 
 
 @app.route('/', methods=['GET'])
@@ -31,17 +31,12 @@ def session():
     else:
         results = MongoCon().get_results({})
 
-    try:
-        results_percents = int(len([result for result in results if result['status']]) / len(results) * 100)
-    except ZeroDivisionError:
-        results_percents = 100
-
     return render_template(
         template_name_or_list='session.html',
         title='Results',
         form=form,
         results=results,
-        results_percents=results_percents,
+        results_percents=percent_calc(len([result for result in results if result['status']]), len(results)),
         session_ids=session_ids
     )
 
