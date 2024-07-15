@@ -1,13 +1,25 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>ApiTester Dashboard</h1>
-    <p>Developed by ASauvage using</p>
-    <ul>
-        <li>Python 3</li>
-        <li>Flask</li>
-        <li>Bootstrap</li>
-    </ul>
-    <p>
+    <div class="row">
+        <div class="col-2"><img src="{{ url_for('static', filename='files/icon.png') }}" width="200" height="200"></div>
+        <div class="col">
+            <h1 class="border-bottom">ApiTester Dashboard</h1>
+            <p>
+                This project has been created to visualize and analyze the results of the <a href="https://github.com/ASauvage/ApiTester" target="_blank">ApiTester</a> project.<br>
+                Several features, such as the "service weather forecast" and the various sorting filters, have been added.
+            </p>
+            <p>Developed by <a href="https://github.com/ASauvage" target="_blank">ASauvage</a> and <a href="https://github.com/PommeSauce0" target="_blank">PommeSauce0</a> using:</p>
+            <ul>
+                <li>Python 3</li>
+                <li>Flask</li>
+                <li>Bootstrap</li>
+            </ul>
+            <br>
+            This project is under <a href="https://github.com/ASauvage/ApiTester_Dashboard/blob/main/LICENSE" target="_blank">MIT license</a>.
+        </div>
+    </div>
+    <hr class="mb-5">
+    <p class="text-center">
         ░░░░░░░░░░░░░░░░░░░░░█████████░░░░░░░░░░<br/>
         ░░███████░░░░░░░░░░███▒▒▒▒▒▒▒▒███░░░░░░░<br/>
         ░░█▒▒▒▒▒▒█░░░░░░░███▒▒▒▒▒▒▒▒▒▒▒▒▒███░░░░<br/>
