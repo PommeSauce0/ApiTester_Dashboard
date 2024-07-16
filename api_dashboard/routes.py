@@ -1,18 +1,49 @@
-from flask import render_template, url_for, flash
+from flask import render_template, flash
 from . import app
 from .forms import SessionForm
 from .mongodb import MongoCon
 from .utils import build_query, percent_calc
 
-
 @app.route('/', methods=['GET'])
 def index():
+    form = SessionForm()
     db = MongoCon()
-    sessions = db.get_all_sessions()
-    services = db.get_all_services()
-    return render_template('index.html',
-                            sessions=sessions,
-                            services=services)
+    session_ids = [id['session_id'] for id in db.get_results(select={'session_id': 1, '_id': 0})]
+
+    results = db.get_results(build_query(form)) if form.validate_on_submit() else db.get_results({})
+
+    sessions = {}
+    service_success_counts = {}
+
+    for result in results:
+        session_id = result['session_id']
+        if session_id not in sessions:
+            sessions[session_id] = []
+        sessions[session_id].append(result)
+
+        service = result.get('service', 'unknown')
+        if service not in service_success_counts:
+            service_success_counts[service] = {'success': 0, 'total': 0}
+
+        service_success_counts[service]['total'] += 1
+        if result['status']:
+            service_success_counts[service]['success'] += 1
+
+    unique_results = [session_results[0] for session_results in sessions.values()][:10]
+    for session_data in unique_results:
+        session_data['has_errors'] = any(not result['status'] for result in sessions[session_data['session_id']])
+
+    service_success_rates = {service: percent_calc(data['success'], data['total']) for service, data in service_success_counts.items()}
+
+    return render_template(
+        'index.html',
+        title='Index',
+        form=form,
+        results=unique_results,
+        results_percents=percent_calc(len([result for result in unique_results if result['status']]), len(unique_results)),
+        session_ids=session_ids,
+        service_success_rates=service_success_rates
+    )
 
 
 @app.route('/about', methods=['GET'])

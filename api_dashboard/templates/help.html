@@ -4,17 +4,17 @@
         <a class="btn w-100" data-bs-toggle="collapse" data-bs-target="#apitester" aria-expanded="false" aria-controls="apitester">
             <h1 class="text-decoration-underline">ApiTester</h1>
         </a>
-        <p>This project use Python to test your api with predefined mapping.</p>
+        <p>This project uses Python to test your API with predefined mapping.</p>
         <div class="collapse show" id="apitester">
             <h2 class="w-100 border-bottom">How to set up</h2>
             <h3>Create your mapping</h3>
             <p>
-                First you have to create a JSON file named the same as your api service:<br>
-                <span class="border-start border-5 text-body-tertiary ps-2">exemple: if your request URL is {url}/pokemon/, then you have to named your file pokemon.json</span>
+                First, you have to create a JSON file named the same as your API service:<br>
+                <span class="border-start border-5 text-body-tertiary ps-2">Example: if your request URL is {url}/pokemon/, then you have to name your file pokemon.json</span>
             </p>
             <p>
-                You have to put your mappings in data/mapping/your_service_folder/. Once the JSON file created, you have to define your API response in it.
-                All following JSON object are suported by the tester:
+                You have to put your mappings in data/mapping/your_service_folder/. Once the JSON file is created, you have to define your API response in it.
+                All following JSON objects are supported by the tester:
             </p>
             <ul>
                 <li><a href="#Number">Number</a></li>
@@ -26,56 +26,59 @@
             </ul>
 
             <h4 id="Number">Number type</h4>
-            To define a field of type <code>Number</code>:
+            <p>To define a field of type <code>Number</code>:</p>
 <pre class="pre_json rounded py-2">
 {
     "field": {
         "_type": "Number"
     }
-}</pre>
-            <p>These properties are avalaible for <code>Number</code> field:</p>
+}
+</pre>
+            <p>These properties are available for <code>Number</code> field:</p>
             <ul>
-                <li><kbd>_type</kbd> : a String that define the type of field (here <code>Number</code>). Return <code>WrongTypeValue</code> if the type doesn't match</li>
-                <li><kbd>_format</kbd> : (optional) a String that define the type format of field (can be <code>int</code> or <code>float</code>)</li>
-                <li><kbd>_optional</kbd> : (optional) a Boolean that define if the field is optional. Return an error of type <code>MissingFIeldError</code> if set to <code>false</code> and the field is missing</li>
-                <li><kbd>_nullable</kbd> : (optional) a Boolean that define if the field can be <code>null</code>. Return an <code>WrongValueError</code> if set to <code>false</code> and the field is <code>null</code></li>
+                <li><kbd>_type</kbd> : a String that defines the type of field (here <code>Number</code>). Returns <code>WrongTypeValue</code> if the type doesn't match</li>
+                <li><kbd>_format</kbd> : (optional) a String that defines the type format of field (can be <code>int</code> or <code>float</code>)</li>
+                <li><kbd>_optional</kbd> : (optional) a Boolean that defines if the field is optional. Returns an error of type <code>MissingFieldError</code> if set to <code>false</code> and the field is missing</li>
+                <li><kbd>_nullable</kbd> : (optional) a Boolean that defines if the field can be <code>null</code>. Returns a <code>WrongValueError</code> if set to <code>false</code> and the field is <code>null</code></li>
             </ul>
 
             <h4 id="String">String type</h4>
-            To define a field of type <code>String</code>:
+            <p>To define a field of type <code>String</code>:</p>
 <pre class="pre_json rounded py-2">
 {
     "field": {
         "_type": "String"
     }
-}</pre>
-            <p>These properties are avalaible for <code>String</code> field:</p>
+}
+</pre>
+            <p>These properties are available for <code>String</code> field:</p>
             <ul>
-                <li><kbd>_type</kbd> : a String that define the type of field (here <code>Number</code>). Return <code>WrongTypeValue</code> if the type doesn't match</li>
-                <li><kbd>_format</kbd> : (optional) a String that define the type format of field (can be <code>int</code> or <code>float</code>)</li>
-                <li><kbd>_enums</kbd> : (optional) an Array containing all enumerations available of this field. Return an <code>WrongEnumsError</code> if value isn't in this Array</li>
-                <li><kbd>_regex</kbd> : (optional) A String containing a regular expression pattern. Return <code>RegexError</code> if the pattern doesn't match</li>
-                <li><kbd>_optional</kbd> : (optional) a Boolean that define if the field is optional. Return an error of type <code>MissingFIeldError</code> if set to <code>false</code> and the field is missing</li>
-                <li><kbd>_nullable</kbd> : (optional) a Boolean that define if the field can be <code>null</code>. Return an <code>WrongValueError</code> if set to <code>false</code> and the field is <code>null</code></li>
+                <li><kbd>_type</kbd> : a String that defines the type of field (here <code>String</code>). Returns <code>WrongTypeValue</code> if the type doesn't match</li>
+                <li><kbd>_format</kbd> : (optional) a String that defines the type format of field (can be <code>int</code> or <code>float</code>)</li>
+                <li><kbd>_enums</kbd> : (optional) an Array containing all enumerations available for this field. Returns a <code>WrongEnumsError</code> if value isn't in this Array</li>
+                <li><kbd>_regex</kbd> : (optional) a String containing a regular expression pattern. Returns <code>RegexError</code> if the pattern doesn't match</li>
+                <li><kbd>_optional</kbd> : (optional) a Boolean that defines if the field is optional. Returns an error of type <code>MissingFieldError</code> if set to <code>false</code> and the field is missing</li>
+                <li><kbd>_nullable</kbd> : (optional) a Boolean that defines if the field can be <code>null</code>. Returns a <code>WrongValueError</code> if set to <code>false</code> and the field is <code>null</code></li>
             </ul>
 
             <h4 id="Boolean">Boolean type</h4>
-            To define a field of type <code>Boolean</code>:
+            <p>To define a field of type <code>Boolean</code>:</p>
 <pre class="pre_json rounded py-2">
 {
     "field": {
         "_type": "Boolean"
     }
-}</pre>
-            <p>These properties are avalaible for <code>Boolean</code> field:</p>
+}
+</pre>
+            <p>These properties are available for <code>Boolean</code> field:</p>
             <ul>
-                <li><kbd>_type</kbd> : a String that define the type of field (here <code>Number</code>). Return <code>WrongTypeValue</code> if the type doesn't match</li>
-                <li><kbd>_optional</kbd> : (optional) a Boolean that define if the field is optional. Return an error of type <code>MissingFIeldError</code> if set to <code>false</code> and the field is missing</li>
-                <li><kbd>_nullable</kbd> : (optional) a Boolean that define if the field can be <code>null</code>. Return an <code>WrongValueError</code> if set to <code>false</code> and the field is <code>null</code></li>
+                <li><kbd>_type</kbd> : a String that defines the type of field (here <code>Boolean</code>). Returns <code>WrongTypeValue</code> if the type doesn't match</li>
+                <li><kbd>_optional</kbd> : (optional) a Boolean that defines if the field is optional. Returns an error of type <code>MissingFieldError</code> if set to <code>false</code> and the field is missing</li>
+                <li><kbd>_nullable</kbd> : (optional) a Boolean that defines if the field can be <code>null</code>. Returns a <code>WrongValueError</code> if set to <code>false</code> and the field is <code>null</code></li>
             </ul>
 
             <h4 id="Object">Object type</h4>
-            To define a field of type <code>Object</code>:
+            <p>To define a field of type <code>Object</code>:</p>
 <pre class="pre_json rounded py-2">
 {
     "field": {
@@ -86,17 +89,18 @@
             }
         }
     }
-}</pre>
-            <p>These properties are avalaible for <code>Object</code> field:</p>
+}
+</pre>
+            <p>These properties are available for <code>Object</code> field:</p>
             <ul>
-                <li><kbd>_type</kbd> : a String that define the type of field (here <code>Number</code>). Return <code>WrongTypeValue</code> if the type doesn't match</li>
-                <li><kbd>_properties</kbd> : an Object containing all properties of this Object. All this field will be tested and matching error will be returned</li>
-                <li><kbd>_optional</kbd> : (optional) a Boolean that define if the field is optional. Return an error of type <code>MissingFIeldError</code> if set to <code>false</code> and the field is missing</li>
-                <li><kbd>_nullable</kbd> : (optional) a Boolean that define if the field can be <code>null</code>. Return an <code>WrongValueError</code> if set to <code>false</code> and the field is <code>null</code></li>
+                <li><kbd>_type</kbd> : a String that defines the type of field (here <code>Object</code>). Returns <code>WrongTypeValue</code> if the type doesn't match</li>
+                <li><kbd>_properties</kbd> : an Object containing all properties of this Object. All these fields will be tested and matching errors will be returned</li>
+                <li><kbd>_optional</kbd> : (optional) a Boolean that defines if the field is optional. Returns an error of type <code>MissingFieldError</code> if set to <code>false</code> and the field is missing</li>
+                <li><kbd>_nullable</kbd> : (optional) a Boolean that defines if the field can be <code>null</code>. Returns a <code>WrongValueError</code> if set to <code>false</code> and the field is <code>null</code></li>
             </ul>
 
             <h4 id="Array">Array type</h4>
-            To define a field of type <code>Array</code>:
+            <p>To define a field of type <code>Array</code>:</p>
 <pre class="pre_json rounded py-2">
 {
     "field": {
@@ -107,18 +111,19 @@
             }
         ]
     }
-}</pre>
-            <p>These properties are avalaible for <code>Array</code> field:</p>
+}
+</pre>
+            <p>These properties are available for <code>Array</code> field:</p>
             <ul>
-                <li><kbd>_type</kbd> : a String that define the type of field (here <code>Number</code>). Return <code>WrongTypeValue</code> if the type doesn't match</li>
-                <li><kbd>_values</kbd> : an Array containing all possible values of this Array. All this value will be tested and matching error will be returned</li>
-                <li><kbd>_minlen</kbd> : (optional) an Integer that define minimal lenght of this Array</li>
-                <li><kbd>_maxlen</kbd> : (optional) an Integer that define maximal lenght of this Array</li>
-                <li><kbd>_optional</kbd> : (optional) a Boolean that define if the field is optional. Return an error of type <code>MissingFIeldError</code> if set to <code>false</code> and the field is missing</li>
-                <li><kbd>_nullable</kbd> : (optional) a Boolean that define if the field can be <code>null</code>. Return an <code>WrongValueError</code> if set to <code>false</code> and the field is <code>null</code></li>
+                <li><kbd>_type</kbd> : a String that defines the type of field (here <code>Array</code>). Returns <code>WrongTypeValue</code> if the type doesn't match</li>
+                <li><kbd>_values</kbd> : an Array containing all possible values of this Array. All these values will be tested and matching errors will be returned</li>
+                <li><kbd>_minlen</kbd> : (optional) an Integer that defines the minimal length of this Array</li>
+                <li><kbd>_maxlen</kbd> : (optional) an Integer that defines the maximal length of this Array</li>
+                <li><kbd>_optional</kbd> : (optional) a Boolean that defines if the field is optional. Returns an error of type <code>MissingFieldError</code> if set to <code>false</code> and the field is missing</li>
+                <li><kbd>_nullable</kbd> : (optional) a Boolean that defines if the field can be <code>null</code>. Returns a <code>WrongValueError</code> if set to <code>false</code> and the field is <code>null</code></li>
             </ul>
             <hr>
-            <p>You have to start with unamed field in your json file:</p>
+            <p>You have to start with an unnamed field in your JSON file:</p>
 <pre class="pre_json rounded py-2">
 {
     "_type": "Array",
@@ -128,23 +133,25 @@
             "_properties": {}
         }
     ]
-}</pre>
+}
+</pre>
             <h3>Create your service configuration</h3>
-            <p>In the python file <code>data/service_config.py</code>, you can add your service config in the <code>SERVICE</code> variable.</p>
+            <p>In the Python file <code>data/service_config.py</code>, you can add your service config in the <code>SERVICE</code> variable.</p>
 <pre class="pre_json rounded py-2">
 SERVICE = {
     "pokeapi": {
-            "path": "/pokeapi/",
-            "url": {
-                "localhost": None,
-                "snapshot": None,
-                "recette": None,
-                "production": "https://pokeapi.co/api/v2/",
-            },
-            "headers": {},
-            "uri": "{url}/{api}/",
+        "path": "/pokeapi/",
+        "url": {
+            "localhost": None,
+            "snapshot": None,
+            "recette": None,
+            "production": "https://pokeapi.co/api/v2/",
+        },
+        "headers": {},
+        "uri": "{url}/{api}/",
     }
-}</pre>
+}
+</pre>
             <p>You can then create a new child class in the <code>shortcut.py</code> file</p>
 <pre class="pre_json rounded py-2">
 class PokeAPIGlobalTester(GlobalTester):
@@ -153,7 +160,7 @@ class PokeAPIGlobalTester(GlobalTester):
 </pre>
 
             <h4>Create endpoint's specifications</h4>
-            <p>You can create a YAML file with the same name and location of your mapping file to use some specification with tests.</p>
+            <p>You can create a YAML file with the same name and location as your mapping file to use some specifications with tests.</p>
 <pre class="pre_json rounded py-2">
 extended_path:  # extend path for your API's url
     - '/charizard'
@@ -163,16 +170,16 @@ query_specs:  # kwargs for request library (get)
     headers:
         token: 'mon_token'
 </pre>
-            <p>Each path attribute are optional, even the YAML file itself!</p>
+            <p>Each path attribute is optional, even the YAML file itself!</p>
 
             <h2 class="w-100 border-bottom">How to test your API</h2>
-            <p>import the <code>shortcut</code> file and call your child class:</p>
+            <p>Import the <code>shortcut</code> file and call your child class:</p>
 <pre class="pre_json rounded py-2">
 from shortcut import PokeAPIGlobalTester
 
 PokeAPIGlobalTester('production')
 </pre>
-            <p>your will get a session ID to find your tests results in mongoDB.</p>
+            <p>You will get a session ID to find your test results in MongoDB.</p>
         </div>
     </div>
     <br>
@@ -181,8 +188,29 @@ PokeAPIGlobalTester('production')
             <h1 class="text-decoration-underline">Dashboard</h1>
         </a>
         <p>This project has been created to visualize and analyze the results of the ApiTester project.</p>
-        <div class="collapse" id="dashboard">
-            Dashboard readme
-        </div>
+        <div class="collapse show" id="dashboard">
+            <h2 class="w-100 border-bottom">Dashboard Guide</h2>
+            <p>The Dashboard allows you to easily view and analyze the results of your API tests. Here's how to navigate and use the Dashboard:</p>
+            <h3 class="w-100 border-bottom">Recent Sessions</h3>
+            <p>The "Recent Sessions" section displays the latest test sessions. Each session is represented with its session ID and an indicator of whether it contains errors or not:</p>
+            <ul>
+                <li><i class="bi bi-check-circle-fill text-success"></i> - No errors in the session</li>
+                <li><i class="bi bi-x-circle-fill text-danger"></i> - There are errors in the session</li>
+            </ul>
+            <p>Clicking on a session ID will take you to the detailed results of that session.</p>
+
+            <h3 class="w-100 border-bottom">Services</h3>
+            <p>The "Services" section shows the success rates of various services based on the recent tests. The success rate is displayed as an icon indicating the overall performance:</p>
+            <ul>
+                <li><i class="bi bi-sun-fill text-warning"></i> - 90% or higher success rate</li>
+                <li><i class="bi bi-cloud-fill text-primary"></i> - 50% to 89% success rate</li>
+                <li><i class="bi bi-cloud-rain-fill text-info"></i> - 25% to 49% success rate</li>
+                <li><i class="bi bi-cloud-lightning-fill text-danger"></i> - Below 25% success rate</li>
+            </ul>
+            <p>Hover over the icons to see the exact success rates.</p>
+
+            <h3 class="w-100 border-bottom">Searching Results</h3>
+            <p>Use the search form on the left to filter test results based on session ID, service, status, environment, or custom MongoDB queries. The results will be displayed on the right.</p>
+ </div>
     </div>
-{% endblock content %}
+{% endblock %}
