@@ -9,7 +9,7 @@ from .utils import build_query, percent_calc
 def index():
     form = SessionForm()
 
-    sessions = MongoCon().get_results({}, limit=50)
+    sessions = MongoCon().get_results({}, limit=60)
     sorted_sessions = dict()
     sorted_services = dict()
 
@@ -49,7 +49,6 @@ def help():
 @app.route('/session', methods=['GET', 'POST'])
 def session():
     form = SessionForm()
-    session_ids = [id['session_id'] for id in MongoCon().get_results(select={'session_id': 1, '_id': 0})]
 
     if form.validate_on_submit():
         results = MongoCon().get_results(build_query(form))
@@ -62,8 +61,7 @@ def session():
         title='Results',
         form=form,
         results=results,
-        results_percents=percent_calc(len([result for result in results if result['status']]), len(results)),
-        session_ids=session_ids
+        results_percents=percent_calc(len([result for result in results if result['status']]), len(results))
     )
 
 
