@@ -1,4 +1,67 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Home page</h1>
+    <div class="row">
+    <div class="col-md-6">
+        <div class="sticky-top z-0" style="top:20px">
+            <div class="content-section rounded-4">
+                <h3 class="border-bottom">Recent sessions</h3>
+                <div class="list-group">
+                    {% for id, session in sessions.items() %}
+                    <form method="POST" action="{{ url_for('session') }}" style="display: none;" id="form-{{ id }}">
+                        {{ form.hidden_tag() }}
+                        <input type="hidden" name="session_id" value="{{ id }}">
+                        <input type="hidden" name="status" value="01">
+                        <input type="hidden" name="env" value="">
+                    </form>
+                    <a href="#" onclick="document.getElementById('form-{{ id }}').submit();" class="list-group-item list-group-item-action rounded">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span>{{ id }}</span>
+                            <span>
+                                {% if session < 100 %}
+                                    <i class="bi bi-x-circle-fill text-danger" data-bs-toggle="tooltip" title="Contains errors"></i>
+                                {% else %}
+                                    <i class="bi bi-check-circle-fill text-success" data-bs-toggle="tooltip" title="No errors"></i>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="sticky-top" style="top:20px">
+            <div class="content-section rounded-4">
+                <h3 class="border-bottom">Services</h3>
+                <div class="list-group">
+                    {% for key, service in services.items() %}
+                    <form method="POST" action="{{ url_for('session') }}" style="display: none;" id="form-{{ service }}">
+                        {{ form.hidden_tag() }}
+                        <input type="hidden" name="service" value="{{ key }}">
+                        <input type="hidden" name="status" value="01">
+                        <input type="hidden" name="env" value="">
+                    </form>
+                    <a href="#" onclick="document.getElementById('form-{{ service }}').submit();" class="list-group-item list-group-item-action rounded">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span>{{ key }}</span>
+                            <span data-bs-toggle="tooltip" title="{{ service }}% success rate">
+                                {% if service >= 90 %}
+                                    <i class="bi bi-sun-fill text-warning"></i>
+                                {% elif service >= 50 %}
+                                    <i class="bi bi-cloud-fill text-primary"></i>
+                                {% elif service >= 25 %}
+                                    <i class="bi bi-cloud-rain-fill text-info"></i>
+                                {% else %}
+                                    <i class="bi bi-cloud-lightning-fill text-danger"></i>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
